@@ -1,0 +1,25 @@
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+  font-size:1em;
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+  font-size: 1em;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  font-size:1.4em;
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px) {
+  font-size:3em;
+}
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px) {
+  font-size:3em;
+}
