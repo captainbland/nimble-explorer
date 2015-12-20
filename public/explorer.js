@@ -45,7 +45,9 @@ $(function() {
       $("#gosearch").attr("disabled", false);
       nimble_data = response;
       var options = {
-        keys: ["name", "tags", "description", "license"]
+        keys: ["name", "tags", "description", "license"],
+        threshold: 0.1,
+        distance:5000
 
       };
       var fuse = new Fuse(nimble_data, options);
