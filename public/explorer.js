@@ -69,32 +69,40 @@ function populateList(search_string) {
   }
 }
 
-function compatibility() {
-  $("#compatibility").css("display", "block");
+function onGetJsonResponse(response) {
+  $("#gosearch").attr("disabled", false);
+  nimble_data = response;
+
+  $("#gosearch").click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    populateList($("#search").val());
+  });
+  $("#search").keydown(function(e) {
+    if(e.keyCode == RETURN_KEY) {
+      populateList($("#search").val());
+    }
+  });
 }
-var jsonp_fail_timeout = setTimeout(compatibility, 2000);
+
+/**If we can't get the data through JSONP, resort to getting it through the server's cache*/
+function loadDataFromServerCache() {
+  $.getJSON("/jsonCache", function(data) {
+      onGetJsonResponse(data);
+  });
+}
+
+
+var jsonp_fail_timeout = setTimeout(loadDataFromServerCache, 2000);
 $(function() {
-  $.getJSON(
-  "http://raw.githubusercontent.com/nim-lang/packages/master/packages.json",
+  /*$.getJSON(
+    "http://raw.githubusercontent.com/nim-lang/packages/master/packages.json",
 
+    // Work with the response
+    function( response ) {
+        clearTimeout(jsonp_fail_timeout);
 
-  // Work with the response
-  function( response ) {
-      clearTimeout(jsonp_fail_timeout);
-      $("#gosearch").attr("disabled", false);
-      nimble_data = response;
+        onGetJsonResponse(response);
+    });*/
 
-      $("#gosearch").click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        populateList($("#search").val());
-      });
-      $("#search").keydown(function(e) {
-        if(e.keyCode == RETURN_KEY) {
-          populateList($("#search").val());
-        }
-      });
-
-
-    });
 });
