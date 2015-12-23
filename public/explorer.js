@@ -95,7 +95,7 @@ function loadDataFromServerCache() {
 
 var jsonp_fail_timeout = setTimeout(loadDataFromServerCache, 2000);
 $(function() {
-  /*$.getJSON(
+  $.getJSON(
     "http://raw.githubusercontent.com/nim-lang/packages/master/packages.json",
 
     // Work with the response
@@ -103,6 +103,6 @@ $(function() {
         clearTimeout(jsonp_fail_timeout);
 
         onGetJsonResponse(response);
-    });*/
+    });
 
 });

@@ -34,8 +34,7 @@ let jsonCache = JSONCache(
 )
 
 routes:
-  get "/":
-    redirect("/index.html")
+
   get "/jsonCache":
     resp(jsonCache.getJSON())
 
